@@ -1,0 +1,35 @@
+name: Validate input type
+on:
+  workflow_dispatch:
+    inputs:
+      fixVersion:
+        description: "Enter fix version ID when running test pack 'ALL QA sites smoke tests'. Found in the JIra release URL i.e. /UNBO/versions/18061/"
+        required: true
+
+jobs:
+  tests:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: [18]
+
+    steps:
+      - name: Inputs validation check
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fixVersionInput = github.context.payload.inputs.fixVersion;
+
+            // Check if fixVersionInput is not empty
+            if (!fixVersionInput) {
+              core.setFailed('Enter a fix version when running QA smoke tests!');
+            } else {
+              // Try parsing the input as an integer
+              const fixVersion = parseInt(fixVersionInput);
+
+              // Check if the parsing was successful and fixVersion is an integer
+              if (isNaN(fixVersion)) {
+                core.setFailed('Fix version must be an integer!');
+              }
+            }
