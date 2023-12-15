@@ -1,0 +1,1 @@
+# gh-actions-validate-input-type
