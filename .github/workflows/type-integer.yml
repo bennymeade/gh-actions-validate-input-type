@@ -7,19 +7,15 @@ on:
         required: true
 
 jobs:
-  tests:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        node: [18]
+  validate-inputs:
+    runs-on: ubuntu-latest
 
     steps:
       - name: Inputs validation check
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         with:
           script: |
-            const fixVersionInput = github.context.payload.inputs.fixVersion;
+            const fixVersionInput = github.event.inputs.fixVersion;
 
             // Check if fixVersionInput is not empty
             if (!fixVersionInput) {
@@ -33,3 +29,5 @@ jobs:
                 core.setFailed('Fix version must be an integer!');
               }
             }
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          debug: false
