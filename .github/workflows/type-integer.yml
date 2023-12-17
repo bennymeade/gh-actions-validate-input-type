@@ -5,9 +5,9 @@ on:
       fixVersion:
         description: "Enter fix version ID when running test pack 'ALL QA sites smoke tests'. Found in the JIra release URL i.e. /UNBO/versions/18061/"
         required: true
-  push:
-    branches:
-      - master
+  # push:
+  #   branches:
+  #     - master
 
 jobs:
   validate-inputs:
@@ -33,5 +33,5 @@ jobs:
             #     core.setFailed('Fix version must be an integer!');
             #   }
             # }
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          debug: false
+          # github-token: ${{ secrets.GITHUB_TOKEN }}
+          # debug: false
