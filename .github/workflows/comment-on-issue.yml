@@ -8,14 +8,20 @@ jobs:
   comment:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/github-script@v7
-        # with:
-        #   script: |
-        #     github.rest.issues.createComment({
-        #       issue_number: context.issue.number,
-        #       owner: context.repo.owner,
-        #       repo: context.repo.repo,
-        #       body: '👋 Thanks for reporting!'
-        #     })
+      - name: Console log step
+        uses: actions/github-script@v7
         with:
           script: console.log(context)
+      
+        
+      - name: Create comment step
+        uses: actions/github-script
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '👋 Thanks for reporting!'
+            })
+        
