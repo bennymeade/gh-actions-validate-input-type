@@ -13,8 +13,8 @@ jobs:
         with:
           script: console.log(context)
       
-      - name: Create comment step
-        uses: actions/github-script
+      - name: Create a comment
+        uses: actions/github-script@v7
         with:
           script: |
             github.rest.issues.createComment({
