@@ -18,8 +18,8 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            const fixVersionInput = github.event.inputs.fixVersion;
-            console.log(fixVersionInput)
+            const fixVersionInput = inputs.fixVersion;
+            console.log(fixVersionInput);
 
             # // Check if fixVersionInput is not empty
             # if (!fixVersionInput) {
