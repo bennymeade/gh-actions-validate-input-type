@@ -18,20 +18,20 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            const fixVersionInput = inputs.fixVersion;
+            const fixVersionInput = github.context.payload.inputs.fixVersion;
             console.log(fixVersionInput);
 
-            # // Check if fixVersionInput is not empty
-            # if (!fixVersionInput) {
-            #   core.setFailed('Enter a fix version when running QA smoke tests!');
-            # } else {
-            #   // Try parsing the input as an integer
-            #   const fixVersion = parseInt(fixVersionInput);
+          # // Check if fixVersionInput is not empty
+          # if (!fixVersionInput) {
+          #   core.setFailed('Enter a fix version when running QA smoke tests!');
+          # } else {
+          #   // Try parsing the input as an integer
+          #   const fixVersion = parseInt(fixVersionInput);
 
-            #   // Check if the parsing was successful and fixVersion is an integer
-            #   if (isNaN(fixVersion)) {
-            #     core.setFailed('Fix version must be an integer!');
-            #   }
-            # }
+          #   // Check if the parsing was successful and fixVersion is an integer
+          #   if (isNaN(fixVersion)) {
+          #     core.setFailed('Fix version must be an integer!');
+          #   }
+          # }
           # github-token: ${{ secrets.GITHUB_TOKEN }}
           # debug: false
