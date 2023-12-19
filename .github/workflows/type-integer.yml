@@ -15,11 +15,8 @@ jobs:
 
     steps:
       - name: Inputs validation check
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const fixVersionInput = github.context.payload.inputs.fixVersion;
-            console.log(fixVersionInput);
+        if: github.event.inputs.fixVersion && !github.event.inputs.fixVersion.match(/^\d+$/)
+        run: echo "Fix version must be an integer."
 
           # // Check if fixVersionInput is not empty
           # if (!fixVersionInput) {
