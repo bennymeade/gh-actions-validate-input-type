@@ -16,16 +16,15 @@ jobs:
     steps:
       - name: Inputs validation check
         run: |
-          if [[ ! $${{ github.event.inputs.fixVersion }} =~ ^[0-9]+$ ]]; then
+          if [[ ! ${{ github.event.inputs.fixVersion }} =~ ^[0-9]+$ ]]; then
             echo "Fix version must be an integer."
             exit 1
           fi
-    
+
       # - name: Inputs validation check
       #   run: |
-      #     fixVersionInput=${{ github.event.inputs.fixVersion }}
-          
-      #     if [[ ! $fixVersionInput =~ ^[0-9]+$ ]]; then
+      #     if [[ ! $${{ github.event.inputs.fixVersion }} =~ ^[0-9]+$ ]]; then
       #       echo "Fix version must be an integer."
       #       exit 1
       #     fi
+    
